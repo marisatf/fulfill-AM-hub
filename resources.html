@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Resources - Account Manager's Hub</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background: #f4f6f8;
+      color: #333;
+    }
+    h1 {
+      color: #0066cc;
+      margin-bottom: 20px;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .section {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 0 6px #ccc;
+    }
+    label, input {
+      font-size: 16px;
+    }
+    input {
+      padding: 6px 8px;
+      width: 100px;
+      margin-left: 10px;
+    }
+    #timeDiffResult {
+      margin-top: 12px;
+      font-weight: bold;
+      color: #0066cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Resources</h1>
+
+  <div class="section">
+    <h2>📄 Download SOP</h2>
+    <p>
+      <a href="https://example.com/path-to-your-SOP.pdf" target="_blank" download>
+        Click here to download the Standard Operating Procedures (SOP) document
+      </a>
+    </p>
+    <small>Replace the link with your actual SOP file URL.</small>
+  </div>
+
+  <div class="section">
+    <h2>🕒 Time Zone Utility</h2>
+    <p>Check the time difference between China Standard Time (CST) and your client's time zone:</p>
+    <label for="clientOffset">Client UTC Offset (e.g. -5 for EST):</label>
+    <input type="number" id="clientOffset" value="0" min="-12" max="14" step="1" />
+    <button onclick="calculateTimeDiff()">Calculate</button>
+    <div id="timeDiffResult"></div>
+  </div>
+
+  <div class="section">
+    <h2>📧 Support</h2>
+    <p>If you have any questions or problems with these tools, please contact us:</p>
+    <p><a href="mailto:marisatf@gmail.com">marisatf@gmail.com</a></p>
+  </div>
+
+  <div class="section">
+    <h2>🔗 Additional Resources</h2>
+    <ul>
+      <li><a href="https://trello.com/b/rEllvRx5/task-manager-test" target="_blank">Trello Task Manager Dashboard</a></li>
+      <li><a href="https://docs.google.com/spreadsheets/d/14I-veJZqAzYvHO73V_-Vw9uPIE3JfAjr2w1kqJ7yt34/edit" target="_blank">Order Information Sheet</a></li>
+      <li><a href="https://docs.google.com/spreadsheets/d/1ZEIRtSDccsAwuGa6hQJCUnq01CMeGKZ2mfBUzwrpgYo/edit" target="_blank">Order Issues Sheet</a></li>
+    </ul>
+  </div>
+
+<script>
+  function calculateTimeDiff() {
+    const clientOffset = parseInt(document.getElementById('clientOffset').value);
+    const chinaOffset = 8; // China Standard Time UTC+8
+    const diff = chinaOffset - clientOffset;
+    const absDiff = Math.abs(diff);
+    const aheadBehind = diff > 0 ? 'ahead of' : diff < 0 ? 'behind' : 'the same as';
+    document.getElementById('timeDiffResult').innerText = 
+      absDiff === 0
+      ? 'Client and China are in the same time zone.'
+      : `China Standard Time is ${absDiff} hour(s) ${aheadBehind} the client.`;
+  }
+</script>
+
+</body>
+</html>

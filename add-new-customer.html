@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add New Customer - Account Manager's Hub</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      line-height: 1.5;
+      max-width: 700px;
+    }
+    h1 {
+      color: #004080;
+    }
+    h2 {
+      color: #0066cc;
+      margin-top: 40px;
+      border-bottom: 2px solid #0066cc;
+      padding-bottom: 6px;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .step {
+      margin-top: 30px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #004a99;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #0066cc;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Add New Customer</h1>
+
+  <div class="step" id="step1">
+    <h2>Step 1: Add New Customer Information</h2>
+    <p>Fill in the new customer info via this form:</p>
+    <a href="https://docs.google.com/forms/d/18NjgGf61oho90nfo6k4NC4pTGhne0H1rdiBsc8F0fJg/edit" target="_blank">Google Form - Add Customer Info</a>
+  </div>
+
+  <div class="step" id="step2">
+    <h2>Step 2: Manage Access to Client's Shopify</h2>
+    <p>Check the instructions on managing Shopify access:</p>
+    <a href="https://docs.google.com/document/d/1tiAHkIKJkPZqEmnJdUxCdOGKz3XBbKhOasBpEmtAHsI/edit?tab=t.0" target="_blank">Shopify Access Document</a>
+  </div>
+
+  <div class="step" id="step3">
+    <h2>Step 3: Generate Store Ticker</h2>
+    <p>Enter the store name or domain to generate a 3–5 character ticker:</p>
+
+    <input type="text" id="storeInput" placeholder="e.g. brilliance.com" />
+    <br />
+    <button onclick="generateTicker()">Generate Ticker</button>
+
+    <div id="result"></div>
+  </div>
+
+  <div class="step" id="step4">
+    <h2>Step 4: Notify Fulfill Office via WeChat</h2>
+    <p>Send this message in the WeChat team group chat:</p>
+    <pre style="background:#f4f4f4; padding:12px; border-radius:6px;">
+New store = BRIL = brilliance.com
+Tag two administrators in Fulfill Office
+Make sure you have updated the Order Information Sheet!
+    </pre>
+  </div>
+
+  <div class="step" id="step5">
+    <h2>Step 5: Create WhatsApp Group Chat</h2>
+    <div style="border: 1px solid #ddd; border-radius: 8px; padding: 24px; background-color: #f9f9f9;">
+      <h3 style="color: #25D366; margin-top: 0;">📱 WhatsApp Group Setup</h3>
+
+      <p><strong>1.</strong> Open <strong>WhatsApp</strong> or <a href="https://web.whatsapp.com" target="_blank">WhatsApp Web</a>.</p>
+
+      <p><strong>2.</strong> Create a new group with the client and assigned internal team members.</p>
+
+      <p><strong>3.</strong> Name the group using this format:<br />
+        <code style="background:#e6f9f0; padding:6px; border-left: 5px solid #25D366; font-family: monospace; font-weight: bold;">
+          STORE NAME | Fulfill
+        </code><br />
+        Example: <code style="font-family: monospace;">Brilliance | Fulfill</code>
+      </p>
+
+      <p><strong>4.</strong> Set a profile photo for the group (e.g. store logo or icon).</p>
+
+      <p><strong>5.</strong> Introduce the team using full names:<br />
+        <code style="background:#e6f9f0; padding:12px; border-left: 5px solid #25D366; font-family: monospace; font-weight: bold;">
+          Hi Brilliance team! 👋<br />
+          Please meet your fulfillment support:<br />
+          Jack Zhang – Order Coordinator<br />
+          Lili Chen – Sourcing Specialist<br />
+          John Wu – Admin Lead
+        </code>
+      </p>
+
+      <a href="https://web.whatsapp.com" target="_blank" style="display:inline-block; margin-top:16px; padding:10px 18px; background-color:#25D366; color:white; text-decoration:none; border-radius:5px; font-weight:bold;">
+        🔗 Open WhatsApp Web
+      </a>
+    </div>
+  </div>
+
+<script>
+  function generateTicker() {
+    const input = document.getElementById("storeInput").value.trim().toLowerCase();
+    const cleaned = input
+      .replace(/^https?:\/\//, '')
+      .replace(/^www\./, '')
+      .replace(/\.(com|store|shop|net|io|co|org|biz)$/, '')
+      .replace(/[^a-z]/g, '');
+
+    const ticker = cleaned.substring(0, 5).toUpperCase();
+
+    document.getElementById("result").innerText =
+      ticker ? `✅ Suggested Ticker: ${ticker}` : "❌ Please enter a valid store name.";
+  }
+</script>
+
+</body>
+</html>
+

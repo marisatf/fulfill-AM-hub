@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Account Manager's Hub</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+      color: #333;
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header img {
+      max-height: 60px;
+      display: block;
+      margin: 0 auto 10px auto;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    header p {
+      font-size: 1rem;
+      margin-top: 5px;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 700px;
+      margin-bottom: 50px;
+    }
+
+    .button-grid a {
+      text-align: center;
+      background-color: #007bff;
+      color: white;
+      padding: 20px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .button-grid a:hover {
+      background-color: #0056b3;
+    }
+
+    .reports-section {
+      text-align: center;
+      padding: 30px 20px;
+      background-color: #e9f1ff;
+      border-top: 2px solid #004080;
+      width: 100%;
+    }
+
+    .reports-section h2 {
+      color: #004080;
+      margin-bottom: 20px;
+    }
+
+    .report-link {
+      display: inline-block;
+      padding: 15px 25px;
+      background-color: #28a745;
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      margin: 0 10px 10px 10px;
+    }
+
+    .report-link:hover {
+      background-color: #1e7e34;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      padding: 30px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="Fullfill.jpg" alt="Company Logo" />
+    <h1>Account Manager's Hub</h1>
+    <p>Your internal control panel</p>
+  </header>
+
+  <main>
+    <div class="button-grid">
+      <a href="add-new-customer.html">➕ Add New Customer</a>
+      <a href="manage-orders.html">📦 Manage Orders</a>
+      <a href="record-activity.html">📝 Record Your Activity</a>
+      <a href="resources.html">📚 Resources</a>
+    </div>
+  </main>
+
+  <section class="reports-section">
+    <h2>📊 Reports</h2>
+    <a
+      class="report-link"
+      href="https://docs.google.com/spreadsheets/d/1XqECSSyzR9R8XLJFwMDj7B0810UbAwqIA3ZGl8e4kI4/edit?usp=sharing"
+      target="_blank"
+      >View New Customers Information</a
+    >
+    <a
+      class="report-link"
+      href="https://docs.google.com/spreadsheets/d/1grsWC1kAc8l7ci2oASGXB4OFx58uyvw4OGJXo9kjfSc/edit?gid=0#gid=0"
+      target="_blank"
+      >View Activity Report</a
+    >
+    <a
+      class="report-link"
+      href="https://lookerstudio.google.com/u/0/reporting/92d4af0c-ae35-419e-8b3c-f1d8f380e9f3/page/3XoSF/edit"
+      target="_blank"
+      >View Orders Information</a
+    >
+  </section>
+
+  <footer>
+    &copy; 2025 Fulfill · Internal Use Only
+  </footer>
+
+</body>
+</html>
+
