@@ -28,16 +28,15 @@
       margin-bottom: 25px;
       box-shadow: 0 0 6px #ccc;
     }
-    label, input {
+    label, select, input, button {
       font-size: 16px;
     }
-    input {
+    select, input, button {
       padding: 6px 8px;
-      width: 100px;
-      margin-left: 10px;
+      margin-top: 8px;
     }
-    #timeDiffResult {
-      margin-top: 12px;
+    #convertedTime {
+      margin-top: 15px;
       font-weight: bold;
       color: #0066cc;
     }
@@ -58,11 +57,27 @@
 
   <div class="section">
     <h2>🕒 Time Zone Utility</h2>
-    <p>Check the time difference between China Standard Time (CST) and your client's time zone:</p>
-    <label for="clientOffset">Client UTC Offset (e.g. -5 for EST):</label>
-    <input type="number" id="clientOffset" value="0" min="-12" max="14" step="1" />
-    <button onclick="calculateTimeDiff()">Calculate</button>
-    <div id="timeDiffResult"></div>
+    <p>See the current time in China and how it translates to your client's time zone:</p>
+
+    <label for="timezone">Client Time Zone:</label><br>
+    <select id="timezone">
+      <option value="0">UTC</option>
+      <option value="-5">Eastern Time (EST / UTC-5)</option>
+      <option value="-4">Eastern Daylight Time (EDT / UTC-4)</option>
+      <option value="-6">Central Time (CST / UTC-6)</option>
+      <option value="-8">Pacific Time (PST / UTC-8)</option>
+      <option value="1">Central European Time (CET / UTC+1)</option>
+      <option value="2">Eastern European Time (EET / UTC+2)</option>
+      <option value="5.5">India Standard Time (IST / UTC+5:30)</option>
+      <option value="7">Thailand (UTC+7)</option>
+      <option value="8" selected>China Standard Time (CST / UTC+8)</option>
+      <option value="9">Japan / Korea (UTC+9)</option>
+      <option value="10">Sydney (UTC+10)</option>
+    </select><br><br>
+
+    <button onclick="convertTime()">Convert</button>
+
+    <div id="convertedTime"></div>
   </div>
 
   <div class="section">
@@ -80,19 +95,33 @@
     </ul>
   </div>
 
-<script>
-  function calculateTimeDiff() {
-    const clientOffset = parseInt(document.getElementById('clientOffset').value);
-    const chinaOffset = 8; // China Standard Time UTC+8
-    const diff = chinaOffset - clientOffset;
-    const absDiff = Math.abs(diff);
-    const aheadBehind = diff > 0 ? 'ahead of' : diff < 0 ? 'behind' : 'the same as';
-    document.getElementById('timeDiffResult').innerText = 
-      absDiff === 0
-      ? 'Client and China are in the same time zone.'
-      : `China Standard Time is ${absDiff} hour(s) ${aheadBehind} the client.`;
-  }
-</script>
+  <script>
+    function convertTime() {
+      const clientOffset = parseFloat(document.getElementById("timezone").value);
+      const chinaOffset = 8;
 
+      const now = new Date();
+
+      // Convert to China time
+      const chinaTime = new Date(now.getTime() + (chinaOffset - now.getTimezoneOffset() / 60) * 3600000);
+      const clientTime = new Date(now.getTime() + (clientOffset - now.getTimezoneOffset() / 60) * 3600000);
+
+      const options = {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      };
+
+      const chinaStr = chinaTime.toLocaleTimeString('en-GB', options);
+      const clientStr = clientTime.toLocaleTimeString('en-GB', options);
+      const offsetDiff = chinaOffset - clientOffset;
+      const offsetLabel = offsetDiff === 0 ? "both time zones are the same" : `China is ${Math.abs(offsetDiff)} hour(s) ${offsetDiff > 0 ? "ahead of" : "behind"} the client`;
+
+      document.getElementById("convertedTime").innerHTML =
+        `🕗 <strong>China Time:</strong> ${chinaStr}<br>
+         🕗 <strong>Client Time:</strong> ${clientStr}<br>
+         ⏱️ <em>${offsetLabel}</em>`;
+    }
+  </script>
 </body>
 </html>
